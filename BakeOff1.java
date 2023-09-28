@@ -96,10 +96,6 @@ public class BakeOff1 extends PApplet {
 
 		for (int i = 0; i < 16; i++)// for all button
 			drawButton(i); // draw button
-
-		fill(255, 0, 0, 200); // set fill color to translucent red
-		ellipse(mouseX, mouseY, 20, 20); // draw user cursor as a circle with a diameter of 20
-
 	}
 
 	public void mousePressed() // test to see if hit was in target!
@@ -153,10 +149,14 @@ public class BakeOff1 extends PApplet {
 		Rectangle bounds = getButtonLocation(i);
 
 		if (trials.get(trialNum) == i) // see if current button is the target
-			fill(0, 255, 255); // if so, fill cyan
+			fill(15, 255, 15); // if so, fill with primary color
+	
+		else  if(trialNum < 15 && trials.get(trialNum+1) == i)  //see if current button is the next target and make sure we are not on the last trial
+			fill(175, 255, 175); //If so, fill with secondary color
+		
 		else
 			fill(200); // if not, fill gray
-
+		
 		rect(bounds.x, bounds.y, bounds.width, bounds.height);
 	}
 
