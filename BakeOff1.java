@@ -8,14 +8,14 @@ import java.util.Collections;
 import processing.core.PApplet;
 
 public class BakeOff1 extends PApplet {
-	// when in doubt, consult the Processsing reference:
+	// when in doubt, consult the Processing reference:
 	// https://processing.org/reference/
 	// The argument passed to main must match the class name
 	public static void main(String[] args) {
 		// Tell processing what class we want to run.
 		PApplet.main("cs3540.BakeOff1");
 	}
-
+	
 	int margin = 200; // set the margin around the squares
 	final int padding = 50; // padding between buttons and also their width/height
 	final int buttonSize = 40; // padding between buttons and also their width/height
@@ -40,7 +40,7 @@ public class BakeOff1 extends PApplet {
 	 * // https://processing.org/reference/setup_.html
 	 */
 	public void setup() {
-		// noCursor(); // hides the system cursor if you want
+		noCursor(); // hides the system cursor if you want
 		noStroke(); // turn off all strokes, we're just using fills here (can change this if you
 					// want)
 		textFont(createFont("Arial", 16)); // sets the font to Arial size 16
@@ -96,6 +96,10 @@ public class BakeOff1 extends PApplet {
 
 		for (int i = 0; i < 16; i++)// for all button
 			drawButton(i); // draw button
+		
+		//Red dot to replace cursor
+		fill(61, 152, 255, 255); // set fill color to translucent red
+		ellipse(mouseX, mouseY, 11, 11); // draw user cursor as a circle with a diameter of 20
 	}
 
 	public void mousePressed() // test to see if hit was in target!
@@ -147,19 +151,21 @@ public class BakeOff1 extends PApplet {
 	// you can edit this method to change how buttons appear
 	public void drawButton(int i) {
 		Rectangle bounds = getButtonLocation(i);
-		
-		fill(255);
-		String buttonText = "Press the green button!";
-		text(buttonText, 350, 50);
+		textFont(createFont("Arial", 20));
+		fill(61, 152, 255);
+		String buttonText1 = "Current Target is Orange";
+		text(buttonText1, 350, 50);
+		String buttonText2 = "Next Target is Yellow";
+		text(buttonText2, 350, 80);
 
 		if (trials.get(trialNum) == i) // see if current button is the target
-			fill(15, 255, 15); // if so, fill with primary color
+			fill(255, 172, 5); // if so, fill with primary color
 		
-		else  if(trialNum < 15 && trials.get(trialNum+1) == i)  //see if current button is the next target and make sure we are not on the last trial
-			fill(200, 200, 100); //If so, fill with secondary color
+		else  if(trialNum < (16*numRepeats)-1 && trials.get(trialNum+1) == i)//see if current button is the next target and make sure we are not on the last trial
+			fill(249, 255, 201); //If so, fill with secondary color
 		
 		else
-			fill(200); // if not, fill gray
+			fill(150); // if not, fill gray
 		
 		rect(bounds.x, bounds.y, bounds.width, bounds.height);
 	}
