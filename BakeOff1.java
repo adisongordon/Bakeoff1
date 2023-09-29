@@ -147,12 +147,16 @@ public class BakeOff1 extends PApplet {
 	// you can edit this method to change how buttons appear
 	public void drawButton(int i) {
 		Rectangle bounds = getButtonLocation(i);
+		
+		fill(255);
+		String buttonText = "Press the green button!";
+		text(buttonText, 350, 50);
 
 		if (trials.get(trialNum) == i) // see if current button is the target
 			fill(15, 255, 15); // if so, fill with primary color
-	
+		
 		else  if(trialNum < 15 && trials.get(trialNum+1) == i)  //see if current button is the next target and make sure we are not on the last trial
-			fill(175, 255, 175); //If so, fill with secondary color
+			fill(200, 200, 100); //If so, fill with secondary color
 		
 		else
 			fill(200); // if not, fill gray
@@ -162,7 +166,7 @@ public class BakeOff1 extends PApplet {
 
 	public void mouseMoved() {
 		// can do stuff everytime the mouse is moved (i.e., not clicked)
-		// https://processing.org/reference/mouseMoved_.html
+		// https://processing.org/reference/mouseMoved_.htmla
 	}
 
 	public void mouseDragged() {
