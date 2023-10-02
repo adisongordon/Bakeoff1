@@ -27,7 +27,7 @@ public class BakeOff1 extends PApplet {
 	int misses = 0; // number of missed clicks
 	Robot robot; // initialized in setup
 
-	int numRepeats = 1; // sets the number of times each button repeats in the test
+	int numRepeats = 3; // sets the number of times each button repeats in the test
 
 	/**
 	 * https://processing.org/reference/settings_.html#:~:text=The%20settings()%20method%20runs,commands%20in%20the%20Processing%20API.
@@ -41,8 +41,7 @@ public class BakeOff1 extends PApplet {
 	 */
 	public void setup() {
 		noCursor(); // hides the system cursor if you want
-		noStroke(); // turn off all strokes, we're just using fills here (can change this if you
-					// want)
+		noStroke(); // turn off all strokes, we're just using fills here (can change this if you want)
 		textFont(createFont("Arial", 16)); // sets the font to Arial size 16
 		textAlign(CENTER);
 		frameRate(60); // normally you can't go much higher than 60 FPS.
@@ -152,18 +151,19 @@ public class BakeOff1 extends PApplet {
 	public void drawButton(int i) {
 		Rectangle bounds = getButtonLocation(i);
 		textFont(createFont("Arial", 20));
-		fill(61, 152, 255);
+		fill(255, 172, 5);
 		String buttonText1 = "Current Target is Orange";
 		text(buttonText1, 350, 50);
+		fill(236, 255, 28);
 		String buttonText2 = "Next Target is Yellow";
 		text(buttonText2, 350, 80);
 
 		if (trials.get(trialNum) == i) // see if current button is the target
 			fill(255, 172, 5); // if so, fill with primary color
 		
-		else  if(trialNum < (16*numRepeats)-1 && trials.get(trialNum+1) == i)//see if current button is the next target and make sure we are not on the last trial
-			fill(249, 255, 201); //If so, fill with secondary color
-		
+		else if(trialNum < (16*numRepeats)-1 && trials.get(trialNum+1) == i)//see if current button is the next target and make sure we are not on the last trial
+			fill(236, 255, 28); //If so, fill with secondary color
+
 		else
 			fill(150); // if not, fill gray
 		
