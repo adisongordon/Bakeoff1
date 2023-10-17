@@ -16,9 +16,11 @@ public class BakeOff1 extends PApplet {
 		PApplet.main("cs3540.BakeOff1");
 	}
 	
-	int margin = 200; // set the margin around the squares
-	final int padding = 50; // padding between buttons and also their width/height
-	final int buttonSize = 40; // padding between buttons and also their width/height
+	int hitOrMiss = 0;
+	
+	int margin = 125; // set the margin around the squares
+	final int padding = 40; // padding between buttons and also their width/height
+	final int buttonSize = 80; // padding between buttons and also their width/height
 	ArrayList<Integer> trials = new ArrayList<Integer>(); // contains the order of buttons that activate in the test
 	int trialNum = 0; // the current trial number (indexes into trials array above)
 	int startTime = 0; // time starts when the first click is captured
@@ -27,7 +29,7 @@ public class BakeOff1 extends PApplet {
 	int misses = 0; // number of missed clicks
 	Robot robot; // initialized in setup
 
-	int numRepeats = 3; // sets the number of times each button repeats in the test
+	int numRepeats = 10; // sets the number of times each button repeats in the test
 
 	/**
 	 * https://processing.org/reference/settings_.html#:~:text=The%20settings()%20method%20runs,commands%20in%20the%20Processing%20API.
@@ -103,6 +105,7 @@ public class BakeOff1 extends PApplet {
 
 	public void mousePressed() // test to see if hit was in target!
 	{
+		//float timeTakenSec = (startTime - finishTime) * 1000;
 		if (trialNum >= trials.size()) // check if task is done
 			return;
 
@@ -122,12 +125,15 @@ public class BakeOff1 extends PApplet {
 		if ((mouseX > bounds.x && mouseX < bounds.x + bounds.width)
 				&& (mouseY > bounds.y && mouseY < bounds.y + bounds.height)) // test to see if hit was within bounds
 		{
-			System.out.println("HIT! " + trialNum + " " + (millis() - startTime)); // success
+			hitOrMiss = 1;
 			hits++;
 		} else {
-			System.out.println("MISSED! " + trialNum + " " + (millis() - startTime)); // fail
+			hitOrMiss = 0;
 			misses++;
 		}
+		
+		System.out.println(trialNum + "," + 1 + "," + mouseX + "," + mouseY + "," + (bounds.x + buttonSize) + "," + (bounds.y + buttonSize) + "," + 
+				buttonSize + "," + hitOrMiss);
 
 		trialNum++; // Increment trial number
 
