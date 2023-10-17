@@ -28,6 +28,8 @@ public class BakeOff1 extends PApplet {
 	int hits = 0; // number of successful clicks
 	int misses = 0; // number of missed clicks
 	Robot robot; // initialized in setup
+	double startClick = 0.0; //Timer when click starts
+	double endClick = 0.0;//Timer when click ends
 
 	int numRepeats = 10; // sets the number of times each button repeats in the test
 
@@ -105,6 +107,7 @@ public class BakeOff1 extends PApplet {
 
 	public void mousePressed() // test to see if hit was in target!
 	{
+		endClick = millis();
 		//float timeTakenSec = (startTime - finishTime) * 1000;
 		if (trialNum >= trials.size()) // check if task is done
 			return;
@@ -133,9 +136,10 @@ public class BakeOff1 extends PApplet {
 		}
 		
 		System.out.println(trialNum + "," + 1 + "," + mouseX + "," + mouseY + "," + (bounds.x + buttonSize / 2) + "," + (bounds.y + buttonSize / 2) + "," + 
-				buttonSize + "," + hitOrMiss);
+				buttonSize + "," + (endClick-startClick)/1000 + "," + hitOrMiss);
 
 		trialNum++; // Increment trial number
+		startClick = millis();
 
 		// in this example design, I move the cursor back to the middle after each click
 		// Note. When running from eclipse the robot class affects the whole screen not
