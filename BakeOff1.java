@@ -132,7 +132,7 @@ public class BakeOff1 extends PApplet {
 			misses++;
 		}
 		
-		System.out.println(trialNum + "," + 1 + "," + mouseX + "," + mouseY + "," + (bounds.x + buttonSize) + "," + (bounds.y + buttonSize) + "," + 
+		System.out.println(trialNum + "," + 1 + "," + mouseX + "," + mouseY + "," + (bounds.x + buttonSize / 2) + "," + (bounds.y + buttonSize / 2) + "," + 
 				buttonSize + "," + hitOrMiss);
 
 		trialNum++; // Increment trial number
