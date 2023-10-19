@@ -20,7 +20,7 @@ public class BakeOff1 extends PApplet {
 	
 	int margin = 125; // set the margin around the squares
 	final int padding = 40; // padding between buttons and also their width/height
-	final int buttonSize = 80; // padding between buttons and also their width/height
+	int buttonSize = 35; // padding between buttons and also their width/height
 	ArrayList<Integer> trials = new ArrayList<Integer>(); // contains the order of buttons that activate in the test
 	int trialNum = 0; // the current trial number (indexes into trials array above)
 	int startTime = 0; // time starts when the first click is captured
@@ -135,7 +135,11 @@ public class BakeOff1 extends PApplet {
 			misses++;
 		}
 		
-		System.out.println(trialNum + "," + 1 + "," + mouseX + "," + mouseY + "," + (bounds.x + buttonSize / 2) + "," + (bounds.y + buttonSize / 2) + "," + 
+		if (trialNum % 16 == 0) {
+			buttonSize += 5;
+		}
+		
+		System.out.println(trialNum + "," + 3 + "," + mouseX + "," + mouseY + "," + (bounds.x + buttonSize / 2) + "," + (bounds.y + buttonSize / 2) + "," + 
 				buttonSize + "," + (endClick-startClick)/1000 + "," + hitOrMiss);
 
 		trialNum++; // Increment trial number
